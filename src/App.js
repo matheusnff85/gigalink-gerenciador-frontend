@@ -10,6 +10,7 @@ import Telefones from './Pages/Telefones';
 import Produtos from './Pages/Produtos';
 import Pedidos from './Pages/Pedidos';
 
+
 function App() {
   return (
     <BrowserRouter>

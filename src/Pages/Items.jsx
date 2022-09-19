@@ -2,7 +2,9 @@ import React from 'react';
 
 function Items() {
   return(
-    <h2>Items Page!!!</h2>
+    <>
+      <h1>Gerenciar Items</h1>
+    </>
   );
 }
 

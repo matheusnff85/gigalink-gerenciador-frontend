@@ -2,7 +2,9 @@ import React from 'react';
 
 function Fornecedores() {
   return(
-    <h2>Fornecedores Page!!!</h2>
+    <>
+      <h1>Gerenciar Fornecedores</h1>
+    </>
   );
 }
 
