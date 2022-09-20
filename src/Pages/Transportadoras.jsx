@@ -3,6 +3,8 @@ import axios from 'axios';
 
 function Transportadoras() {
   const [transportadoras, setTransportadoras] = useState([]);
+  const [editModeIsOn, setEditMode] = useState(false);
+  const [currentEditId, setCurrentEditId] = useState('');
 
   async function getTransportadoras() {
     const apiData = await axios.get('http://localhost:3001/transportadoras').then((res) => res.data);
@@ -20,12 +22,41 @@ function Transportadoras() {
     }
   };
 
+  function enableEditMode(id) {
+    if(currentEditId === id) {
+      setCurrentEditId('');
+      setEditMode(false);
+    } else {
+      setCurrentEditId(id);
+      setEditMode(true);
+    }
+  }
+
   useEffect(() => {
     getTransportadoras();
   }, []);
+
   return(
     <>
       <h1>Gerenciar Transportadoras</h1>
+      <h3>{ `Transportadoras cadastradas: ${ transportadoras.length }` }</h3>
+      <div>
+        <label htmlFor="nome">
+          Nome:
+          <input type="text" id="nome" />
+        </label>
+        { editModeIsOn 
+          ? (
+            <button>
+              Editar Transportadora
+            </button>
+          )
+          : (
+            <button>
+              Cadastrar Transportadora
+            </button>
+          )}
+      </div>
       <table>
         <thead>
           <tr>
@@ -40,7 +71,7 @@ function Transportadoras() {
             <tr key={ id }>
               <td>{ id }</td>
               <td>{ nome }</td>
-              <td><button>Editar</button></td>
+              <td><button onClick={ () => enableEditMode(id) }>Editar</button></td>
               <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
             </tr>
           </tbody>

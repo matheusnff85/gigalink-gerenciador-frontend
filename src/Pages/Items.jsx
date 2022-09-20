@@ -3,6 +3,8 @@ import axios from 'axios';
 
 function Items() {
   const [items, setItems] = useState([]);
+  const [editModeIsOn, setEditMode] = useState(false);
+  const [currentEditId, setCurrentEditId] = useState('');
 
   async function getItems() {
     const apiData = await axios.get('http://localhost:3001/items').then((res) => res.data);
@@ -20,12 +22,56 @@ function Items() {
     }
   };
 
+  function enableEditMode(id) {
+    if(currentEditId === id) {
+      setCurrentEditId('');
+      setEditMode(false);
+    } else {
+      setCurrentEditId(id);
+      setEditMode(true);
+    }
+  }
+
   useEffect(() => {
     getItems();
   }, []);
+
   return(
     <>
       <h1>Gerenciar Items</h1>
+      <h3>{ `Items registrados: ${ items.length }` }</h3>
+      <div>
+        <label htmlFor="quantidade">
+          Quantidade:
+          <input type="number" name="quantidade" />
+        </label>
+
+        <label htmlFor="valor">
+          Valor:
+          <input type="number" name="valor" />
+        </label>
+
+        <label htmlFor="idProduto">
+          Id do Produto:
+          <input type="number" name="idProduto" />
+        </label>
+
+        <label htmlFor="idPedido">
+          id do Pedido:
+          <input type="number" name="idPedido" />
+        </label>
+        { editModeIsOn 
+          ? (
+            <button>
+              Editar Item
+            </button>
+          )
+          : (
+            <button>
+              Cadastrar Item
+            </button>
+        )}
+      </div>
       <table>
         <thead>
           <tr>
@@ -51,7 +97,7 @@ function Items() {
               <td>{ produtos.nome }</td>
               <td>{ idPedido }</td>
               <td>{ pedidos.notafiscal }</td>
-              <td><button>Editar</button></td>
+              <td><button onClick={ () => enableEditMode(id) }>Editar</button></td>
               <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
             </tr>
           </tbody>

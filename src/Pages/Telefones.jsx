@@ -3,6 +3,8 @@ import axios from 'axios';
 
 function Telefones() {
   const [telefones, setTelefones] = useState([]);
+  const [editModeIsOn, setEditMode] = useState(false);
+  const [currentEditId, setCurrentEditId] = useState('');
 
   async function getTelefones() {
     const apiData = await axios.get('http://localhost:3001/telefones').then((res) => res.data);
@@ -20,12 +22,56 @@ function Telefones() {
     }
   };
 
+  function enableEditMode(id) {
+    if(currentEditId === id) {
+      setCurrentEditId('');
+      setEditMode(false);
+    } else {
+      setCurrentEditId(id);
+      setEditMode(true);
+    }
+  }
+
   useEffect(() => {
     getTelefones();
   }, []);
+
   return(
     <>
       <h1>Gerenciar Telefones</h1>
+      <h3>{ `Telefones registrados: ${ telefones.length }.` }</h3>
+      <div>
+        <label htmlFor="ddd">
+          DDD:
+          <input type="text" id="ddd" />
+        </label>
+
+        <label htmlFor="numero">
+          Número:
+          <input type="text" id="numero" />
+        </label>
+
+        <label htmlFor="referencia">
+          Referência:
+          <input type="text" id="referencia" />
+        </label>
+
+        <label htmlFor="idFornecedor">
+          Id do Fornecedor:
+          <input type="number" id="idFornecedor" />
+        </label>
+        { editModeIsOn 
+          ? (
+            <button>
+              Editar Telefone
+            </button>
+          )
+          : (
+            <button>
+              Cadastrar Telefone
+            </button>
+        )}
+      </div>
       <table>
         <thead>
           <tr>
@@ -47,7 +93,7 @@ function Telefones() {
               <td>{ referencia }</td>
               <td>{ idFornecedor }</td>
               <td>{ fornecedores.nome }</td>
-              <td><button>Editar</button></td>
+              <td><button onClick={ () => enableEditMode(id) }>Editar</button></td>
               <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
             </tr>
           </tbody>

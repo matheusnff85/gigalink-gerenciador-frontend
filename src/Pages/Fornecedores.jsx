@@ -3,6 +3,8 @@ import axios from 'axios';
 
 function Fornecedores() {
   const [fornecedores, setFornecedores] = useState([]);
+  const [editModeIsOn, setEditMode] = useState(false);
+  const [currentEditId, setCurrentEditId] = useState('');
 
   async function getFornecedores() {
     const apiData = await axios.get('http://localhost:3001/fornecedores').then((res) => res.data);
@@ -20,12 +22,66 @@ function Fornecedores() {
     }
   };
 
+  function enableEditMode(id) {
+    if(currentEditId === id) {
+      setCurrentEditId('');
+      setEditMode(false);
+    } else {
+      setCurrentEditId(id);
+      setEditMode(true);
+    }
+  }
+
   useEffect(() => {
     getFornecedores();
   }, []);
+
   return(
     <>
       <h1>Gerenciar Fornecedores</h1>
+      <h3>{ `Fornecedores cadastrados: ${ fornecedores.length }.`}</h3>
+      <div>
+        <label htmlFor="nome">
+          Nome:
+          <input type="text" name="nome" />
+        </label>
+
+        <label htmlFor="descricao">
+          Descrição:
+          <input type="text" name="descricao" />
+        </label>
+
+        <label htmlFor="cidade">
+          Cidade:
+          <input type="text" name="cidade" />
+        </label>
+
+        <label htmlFor="endereco">
+          Endereço:
+          <input type="text" name="endereco" />
+        </label>
+
+        <label htmlFor="bairro">
+          Bairro:
+          <input type="text" name="bairro" />
+        </label>
+
+        <label htmlFor="numero">
+          Número:
+          <input type="number" name="numero" />
+        </label>
+        { editModeIsOn 
+          ? (
+            <button>
+              Editar Fornecedor
+            </button>
+          )
+          : (
+            <button>
+              Cadastrar Fornecedor
+            </button>
+        )}
+      </div>
       <table>
         <thead>
           <tr>
@@ -57,7 +113,7 @@ function Fornecedores() {
               <td>{ emails.length }</td>
               <td>{ telefones.length }</td>
               <td>{ produtos.length }</td>
-              <td><button>Editar</button></td>
+              <td><button onClick={ () => enableEditMode(id) }>Editar</button></td>
               <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
             </tr>
           </tbody>

@@ -3,6 +3,8 @@ import axios from 'axios';
 
 function Emails() {
   const [emails, setEmails] = useState([]);
+  const [editModeIsOn, setEditMode] = useState(false);
+  const [currentEditId, setCurrentEditId] = useState('');
 
   async function getEmails() {
     const apiData = await axios.get('http://localhost:3001/emails').then((res) => res.data);
@@ -20,6 +22,16 @@ function Emails() {
     }
   };
 
+  function enableEditMode(id) {
+    if(currentEditId === id) {
+      setCurrentEditId('');
+      setEditMode(false);
+    } else {
+      setCurrentEditId(id);
+      setEditMode(true);
+    }
+  }
+
   useEffect(() => {
     getEmails();
   }, []);
@@ -27,7 +39,34 @@ function Emails() {
   return(
     <>
       <h1>Gerenciar Emails</h1>
-      <h4>{ `Quantidade de emails registrados: ${ emails.length }` }</h4>
+      <h4>{ `Emails registrados: ${ emails.length }.` }</h4>
+      <div>
+        <label htmlFor="email">
+          Email:
+          <input type="text" name="email" />
+        </label>
+
+        <label htmlFor="referencia">
+          Referência:
+          <input type="text" name="referencia" />
+        </label>
+
+        <label htmlFor="idFornecedor">
+          Id do Fornecedor:
+          <input type="text" name="idFornecedor" />
+        </label>
+        { editModeIsOn 
+          ? (
+            <button>
+              Editar Email
+            </button>
+          )
+          : (
+            <button>
+              Cadastrar Email
+            </button>
+        )}
+      </div>
       <table>
         <thead>
           <tr>
@@ -48,7 +87,7 @@ function Emails() {
               <td>{ referencia }</td>
               <td>{ idFornecedor }</td>
               <td>{ fornecedores.nome }</td>
-              <td><button>Editar</button></td>
+              <td><button onClick={ () => enableEditMode(id) }>Editar</button></td>
               <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
             </tr>
           </tbody>
