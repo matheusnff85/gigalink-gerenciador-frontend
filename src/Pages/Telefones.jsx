@@ -9,6 +9,17 @@ function Telefones() {
     return setTelefones(apiData);
   };
 
+  async function deleteItem(id) {
+    const result = await axios.delete(`http://localhost:3001/telefones/${id}`)
+      .then((res) => res.status);
+    if(result === 204) {
+      window.alert('Telefone removido com sucesso!');
+      return window.location.reload();
+    } else {
+      return window.alert('Internal error.');
+    }
+  };
+
   useEffect(() => {
     getTelefones();
   }, []);
@@ -37,7 +48,7 @@ function Telefones() {
               <td>{ idFornecedor }</td>
               <td>{ fornecedores.nome }</td>
               <td><button>Editar</button></td>
-              <td><button>Excluir</button></td>
+              <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
             </tr>
           </tbody>
         ))}

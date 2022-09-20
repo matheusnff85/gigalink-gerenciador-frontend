@@ -9,6 +9,17 @@ function Fornecedores() {
     return setFornecedores(apiData);
   };
 
+  async function deleteItem(id) {
+    const result = await axios.delete(`http://localhost:3001/fornecedores/${id}`)
+      .then((res) => res.status);
+    if(result === 204) {
+      window.alert('Fornecedor removido com sucesso!');
+      return window.location.reload();
+    } else {
+      return window.alert('Internal error.');
+    }
+  };
+
   useEffect(() => {
     getFornecedores();
   }, []);
@@ -47,7 +58,7 @@ function Fornecedores() {
               <td>{ telefones.length }</td>
               <td>{ produtos.length }</td>
               <td><button>Editar</button></td>
-              <td><button>Excluir</button></td>
+              <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
             </tr>
           </tbody>
         ))}

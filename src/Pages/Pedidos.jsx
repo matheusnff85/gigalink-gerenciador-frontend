@@ -9,6 +9,17 @@ function Pedidos() {
     return setPedidos(apiData);
   };
 
+  async function deleteItem(id) {
+    const result = await axios.delete(`http://localhost:3001/pedidos/${id}`)
+      .then((res) => res.status);
+    if(result === 204) {
+      window.alert('Pedido removido com sucesso!');
+      return window.location.reload();
+    } else {
+      return window.alert('Internal error.');
+    }
+  };
+
   useEffect(() => {
     getPedidos();
   }, []);
@@ -43,7 +54,7 @@ function Pedidos() {
               <td>{ idTransportadora }</td>
               <td>{ transportadoras.nome }</td>
               <td><button>Editar</button></td>
-              <td><button>Excluir</button></td>
+              <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
             </tr>
           </tbody>
         ))}

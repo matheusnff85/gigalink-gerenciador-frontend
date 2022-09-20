@@ -9,6 +9,17 @@ function Transportadoras() {
     return setTransportadoras(apiData);
   };
 
+  async function deleteItem(id) {
+    const result = await axios.delete(`http://localhost:3001/transportadoras/${id}`)
+      .then((res) => res.status);
+    if(result === 204) {
+      window.alert('Transportadora removida com sucesso!');
+      return window.location.reload();
+    } else {
+      return window.alert('Internal error.');
+    }
+  };
+
   useEffect(() => {
     getTransportadoras();
   }, []);
@@ -30,7 +41,7 @@ function Transportadoras() {
               <td>{ id }</td>
               <td>{ nome }</td>
               <td><button>Editar</button></td>
-              <td><button>Excluir</button></td>
+              <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
             </tr>
           </tbody>
         ))}
