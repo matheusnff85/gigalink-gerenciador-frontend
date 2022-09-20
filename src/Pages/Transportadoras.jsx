@@ -44,7 +44,12 @@ function Transportadoras() {
       <div>
         <label htmlFor="nome">
           Nome:
-          <input type="text" id="nome" />
+          <input
+            type="text"
+            id="nome"
+            value={ stateNome }
+            onChange={ (event) => setStateNome(event.target.value) }
+          />
         </label>
         { editModeIsOn 
           ? (

@@ -8,7 +8,7 @@ function Telefones() {
   const [stateDDD, setStateDDD] = useState('');
   const [stateNumero, setStateNumero] = useState('');
   const [stateReferencia, setStateReferencia] = useState('');
-  const [stateIdFornecedor, setStateIdstateIdFornecedor] = useState('');
+  const [stateIdFornecedor, setStateIdFornecedor] = useState('');
 
   async function getTelefones() {
     const apiData = await axios.get('http://localhost:3001/telefones').then((res) => res.data);
@@ -47,22 +47,42 @@ function Telefones() {
       <div>
         <label htmlFor="ddd">
           DDD:
-          <input type="text" id="ddd" />
+          <input
+            type="text"
+            id="ddd"
+            value={ stateDDD }
+            onChange={ (event) => setStateDDD(event.target.value) }
+          />
         </label>
 
         <label htmlFor="numero">
           Número:
-          <input type="text" id="numero" />
+          <input
+            type="text"
+            id="numero"
+            value={  stateNumero }
+            onChange={ (event) => setStateNumero(event.target.value) }
+          />
         </label>
 
         <label htmlFor="referencia">
           Referência:
-          <input type="text" id="referencia" />
+          <input
+            type="text"
+            id="referencia"
+            value={ stateReferencia }
+            onChange={ (event) => setStateReferencia(event.target.value) }
+          />
         </label>
 
         <label htmlFor="idFornecedor">
           Id do Fornecedor:
-          <input type="number" id="idFornecedor" />
+          <input
+            type="number"
+            id="idFornecedor"
+            value={ stateIdFornecedor }
+            onChange={ (event) => setStateIdFornecedor(event.target.value) }
+          />
         </label>
         { editModeIsOn 
           ? (

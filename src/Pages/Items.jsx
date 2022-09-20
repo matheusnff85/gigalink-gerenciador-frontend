@@ -47,22 +47,42 @@ function Items() {
       <div>
         <label htmlFor="quantidade">
           Quantidade:
-          <input type="number" name="quantidade" />
+          <input
+            type="number"
+            name="quantidade"
+            value={ stateQuantidade }
+            onChange={ (event) => setStateQuantidade(event.target.value) }
+          />
         </label>
 
         <label htmlFor="valor">
           Valor:
-          <input type="number" name="valor" />
+          <input
+            type="number"
+            name="valor"
+            value={ stateValor }
+            onChange={ (event) => setStateValor(event.target.value) }
+          />
         </label>
 
         <label htmlFor="idProduto">
           Id do Produto:
-          <input type="number" name="idProduto" />
+          <input
+            type="number"
+            name="idProduto"
+            value={ stateIdProduto }
+            onChange={ (event) => setStateIdProduto(event.target.value) }
+          />
         </label>
 
         <label htmlFor="idPedido">
           id do Pedido:
-          <input type="number" name="idPedido" />
+          <input
+            type="number"
+            name="idPedido"
+            value={ stateidPedido }
+            onChange={ (event) => setStateidPedido(event.target.value) }
+          />
         </label>
         { editModeIsOn 
           ? (

@@ -46,17 +46,32 @@ function Emails() {
       <div>
         <label htmlFor="email">
           Email:
-          <input type="text" name="email" />
+          <input
+            type="text"
+            name="email"
+            value={ stateEmail }
+            onChange={ (event) => setStateEmail(event.target.value) }
+          />
         </label>
 
         <label htmlFor="referencia">
           Referência:
-          <input type="text" name="referencia" />
+          <input
+            type="text"
+            name="referencia"
+            value={ stateReferencia }
+            onChange={ (event) => setStateReferencia(event.target.value) }
+          />
         </label>
 
         <label htmlFor="idFornecedor">
           Id do Fornecedor:
-          <input type="text" name="idFornecedor" />
+          <input
+            type="text"
+            name="idFornecedor"
+            value={ stateIdFornecedor }
+            onChange={ (event) => setStateIdFornecedor(event.target.value) }
+          />
         </label>
         { editModeIsOn 
           ? (

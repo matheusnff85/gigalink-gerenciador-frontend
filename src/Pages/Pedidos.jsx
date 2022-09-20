@@ -46,29 +46,54 @@ function Pedidos() {
       <h1>Gerenciar Pedidos</h1>
       <h3>{ `Pedidos registrados: ${ pedidos.length }` }</h3>
       <div>
-        <label htmlFor="">
+        <label htmlFor="notafiscal">
           Nota Fiscal:
-          <input type="text" id="" />
+          <input
+            type="text"
+            id="notafiscal"
+            value={ stateNotaFiscal }
+            onChange={ (event) => setStateNotaFiscal(event.target.value) }
+          />
         </label>
 
-        <label htmlFor="">
+        <label htmlFor="valorfrete">
           Valor do Frete:
-          <input type="number" id="" />
+          <input
+            type="number"
+            id="valorfrete"
+            value={ stateValorFrete }
+            onChange={ (event) => setStateValorFrete(event.target.value) }
+          />
         </label>
 
-        <label htmlFor="">
+        <label htmlFor="desconto">
           Desconto:
-          <input type="number" id="" />
+          <input
+            type="number"
+            id="desconto"
+            value={ stateDesconto }
+            onChange={ (event) => setStateDesconto(event.target.value) }
+          />
         </label>
 
-        <label htmlFor="">
+        <label htmlFor="valortotal">
           Valor Total:
-          <input type="number" id="" />
+          <input
+            type="number"
+            id="valortotal"
+            value={ stateValorTotal }
+            onChange={ (event) => setStateValorTotal(event.target.value) }
+          />
         </label>
 
-        <label htmlFor="">
+        <label htmlFor="idTransportadora">
           idTransportadora: 
-          <input type="number" id="" />
+          <input
+            type="number"
+            id="idTransportadora"
+            value={ stateIdTransportadora }
+            onChange={ (event) => setStateIdTransportadora(event.target.value) }
+          />
         </label>
         { editModeIsOn 
           ? (

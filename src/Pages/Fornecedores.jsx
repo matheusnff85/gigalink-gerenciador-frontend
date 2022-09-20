@@ -5,8 +5,8 @@ function Fornecedores() {
   const [fornecedores, setFornecedores] = useState([]);
   const [editModeIsOn, setEditMode] = useState(false);
   const [currentEditId, setCurrentEditId] = useState('');
-  const [stateNome, setNome] = useState('');
-  const [stateDescricao, setDescricao] = useState('');
+  const [stateNome, setStateNome] = useState('');
+  const [stateDescricao, setStateDescricao] = useState('');
   const [stateCidade, setStateCidade] = useState('');
   const [stateEndereco, setStateEndereco] = useState('');
   const [stateBairro, setStateBairro] = useState('');
@@ -49,32 +49,62 @@ function Fornecedores() {
       <div>
         <label htmlFor="nome">
           Nome:
-          <input type="text" name="nome" />
+          <input
+            type="text"
+            name="nome"
+            value={ stateNome }
+            onChange={ (event) => setStateNome(event.target.value) }
+          />
         </label>
 
         <label htmlFor="descricao">
           Descrição:
-          <input type="text" name="descricao" />
+          <input
+            type="text"
+            name="descricao"
+            value={ stateDescricao }
+            onChange={ (event) => setStateDescricao(event.target.value) }
+          />
         </label>
 
         <label htmlFor="cidade">
           Cidade:
-          <input type="text" name="cidade" />
+          <input
+            type="text"
+            name="cidade"
+            value={ stateCidade }
+            onChange={ (event) => setStateCidade(event.target.value) }
+          />
         </label>
 
         <label htmlFor="endereco">
           Endereço:
-          <input type="text" name="endereco" />
+          <input
+            type="text"
+            name="endereco"
+            value={ stateEndereco }
+            onChange={ (event) => setStateEndereco(event.target.value) }
+          />
         </label>
 
         <label htmlFor="bairro">
           Bairro:
-          <input type="text" name="bairro" />
+          <input
+            type="text"
+            name="bairro"
+            value={ stateBairro }
+            onChange={ (event) => setStateBairro(event.target.value) }
+          />
         </label>
 
         <label htmlFor="numero">
           Número:
-          <input type="number" name="numero" />
+          <input
+            type="number"
+            name="numero"
+            value={ stateNumero }
+            onChange={ (event) => setStateNumero(event.target.value) }
+          />
         </label>
         { editModeIsOn 
           ? (

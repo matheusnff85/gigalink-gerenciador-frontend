@@ -46,17 +46,32 @@ function Produtos() {
       <div>
         <label htmlFor="nome">
           Nome:
-          <input type="text" id="nome" />
+          <input
+            type="text"
+            id="nome"
+            value={ stateNome }
+            onChange={ (event) => setStateNome(event.target.value) }
+          />
         </label>
 
         <label htmlFor="descricao">
           Descrição:
-          <input type="text" id="descricao" />
+          <input 
+            type="text" 
+            id="descricao" 
+            value={ stateDescricao }
+            onChange={ (event) => setStateDescricao(event.target.value) }
+          />
         </label>
 
         <label htmlFor="idFornecedor">
           Id do Fornecedor:
-          <input type="number" id="idFornecedor" />
+          <input
+            type="number"
+            id="idFornecedor"
+            value={ stateIdFornecedor }
+            onChange={ (event) => setStateIdFornecedor(event.target.value) }
+          />
         </label>
         { editModeIsOn 
           ? (
