@@ -86,9 +86,9 @@ function Items() {
             <th scope="col">Excluir</th>
           </tr>
         </thead>
+        <tbody>
         { items.length > 0 && items.map((
           { id, quantidade, valor, idProduto, idPedido, produtos, pedidos }) => (
-          <tbody>
             <tr key={ id }>
               <td>{ id }</td>
               <td>{ quantidade }</td>
@@ -100,8 +100,8 @@ function Items() {
               <td><button onClick={ () => enableEditMode(id) }>Editar</button></td>
               <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
             </tr>
-          </tbody>
-        ))}
+          ))}
+        </tbody>
       </table>
     </>
   );

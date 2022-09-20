@@ -84,9 +84,9 @@ function Telefones() {
             <th scope="col">Excluir</th>
           </tr>
         </thead>
+        <tbody>
         { telefones.length > 0 && telefones.map((
           { id, ddd, numero, referencia, idFornecedor, fornecedores }) => (
-          <tbody>
             <tr key={ id }>
               <td>{ id }</td>
               <td>{ `${ddd} ${numero}` }</td>
@@ -96,8 +96,8 @@ function Telefones() {
               <td><button onClick={ () => enableEditMode(id) }>Editar</button></td>
               <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
             </tr>
-          </tbody>
-        ))}
+          ))}
+        </tbody>
       </table>
     </>
   );

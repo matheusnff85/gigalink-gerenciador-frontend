@@ -79,8 +79,8 @@ function Emails() {
             <th scope="col">Excluir</th>
           </tr>
         </thead>
+        <tbody>
         { emails.length > 0 && emails.map(({ id, email, referencia, idFornecedor, fornecedores }) => (
-          <tbody>
             <tr key={ id }>
               <td>{ id }</td>
               <td>{ email }</td>
@@ -90,8 +90,8 @@ function Emails() {
               <td><button onClick={ () => enableEditMode(id) }>Editar</button></td>
               <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
             </tr>
-          </tbody>
-        ))}
+          ))}
+        </tbody>
       </table>
     </>
   );

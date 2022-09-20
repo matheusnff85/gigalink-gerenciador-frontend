@@ -66,16 +66,16 @@ function Transportadoras() {
             <th scope="col">Excluir</th>
           </tr>
         </thead>
+        <tbody>
         { transportadoras.length > 0 && transportadoras.map(({ id, nome }) => (
-          <tbody>
             <tr key={ id }>
               <td>{ id }</td>
               <td>{ nome }</td>
               <td><button onClick={ () => enableEditMode(id) }>Editar</button></td>
               <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
             </tr>
-          </tbody>
-        ))}
+          ))}
+        </tbody>
       </table>
     </>
   );

@@ -92,9 +92,9 @@ function Pedidos() {
             <th scope="col">Excluir</th>
           </tr>
         </thead>
+        <tbody>
         { pedidos.length > 0 && pedidos.map((
           { id, datahora, notafiscal, valorfrete, desconto, valortotal, idTransportadora, transportadoras }) => (
-          <tbody>
             <tr key={ id }>
               <td>{ id }</td>
               <td>{ datahora }</td>
@@ -107,8 +107,8 @@ function Pedidos() {
               <td><button onClick={ () => enableEditMode(id) }>Editar</button></td>
               <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
             </tr>
-          </tbody>
-        ))}
+          ))}
+        </tbody>
       </table>
     </>
   );

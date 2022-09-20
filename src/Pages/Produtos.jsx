@@ -79,8 +79,8 @@ function Produtos() {
             <th scope="col">Excluir</th>
           </tr>
         </thead>
-        { produtos.length > 0 && produtos.map(({ id, nome, descricao, idFornecedor, fornecedores }) => (
-          <tbody>
+        <tbody>
+          { produtos.length > 0 && produtos.map(({ id, nome, descricao, idFornecedor, fornecedores }) => (
             <tr key={ id }>
               <td>{ id }</td>
               <td>{ nome }</td>
@@ -90,8 +90,8 @@ function Produtos() {
               <td><button onClick={ () => enableEditMode(id) }>Editar</button></td>
               <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
             </tr>
-          </tbody>
-        ))}
+          ))}
+        </tbody>
       </table>
     </>
   );

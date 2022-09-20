@@ -99,9 +99,9 @@ function Fornecedores() {
             <th scope="col">Excluir</th>
           </tr>
         </thead>
+        <tbody>
         { fornecedores.length > 0 && fornecedores.map((
           { id, nome, descricao, cidade, endereco, bairro, numero, emails, telefones, produtos }) => (
-          <tbody>
             <tr key={ id }>
               <td>{ id }</td>
               <td>{ nome }</td>
@@ -116,8 +116,8 @@ function Fornecedores() {
               <td><button onClick={ () => enableEditMode(id) }>Editar</button></td>
               <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
             </tr>
-          </tbody>
-        ))}
+          ))}
+        </tbody>
       </table>
     </>
   );
