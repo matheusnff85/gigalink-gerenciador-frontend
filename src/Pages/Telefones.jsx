@@ -5,6 +5,10 @@ function Telefones() {
   const [telefones, setTelefones] = useState([]);
   const [editModeIsOn, setEditMode] = useState(false);
   const [currentEditId, setCurrentEditId] = useState('');
+  const [stateDDD, setStateDDD] = useState('');
+  const [stateNumero, setStateNumero] = useState('');
+  const [stateReferencia, setStateReferencia] = useState('');
+  const [stateIdFornecedor, setStateIdstateIdFornecedor] = useState('');
 
   async function getTelefones() {
     const apiData = await axios.get('http://localhost:3001/telefones').then((res) => res.data);

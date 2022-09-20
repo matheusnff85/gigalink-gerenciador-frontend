@@ -5,6 +5,9 @@ function Emails() {
   const [emails, setEmails] = useState([]);
   const [editModeIsOn, setEditMode] = useState(false);
   const [currentEditId, setCurrentEditId] = useState('');
+  const [stateEmail, setStateEmail] = useState('');
+  const [stateReferencia, setStateReferencia] = useState('');
+  const [stateIdFornecedor, setStateIdFornecedor] = useState('');
 
   async function getEmails() {
     const apiData = await axios.get('http://localhost:3001/emails').then((res) => res.data);

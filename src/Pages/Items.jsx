@@ -5,6 +5,10 @@ function Items() {
   const [items, setItems] = useState([]);
   const [editModeIsOn, setEditMode] = useState(false);
   const [currentEditId, setCurrentEditId] = useState('');
+  const [stateQuantidade, setStateQuantidade] = useState('');
+  const [stateValor, setStateValor] = useState('');
+  const [stateIdProduto, setStateIdProduto] = useState('');
+  const [stateidPedido, setStateidPedido] = useState('');
 
   async function getItems() {
     const apiData = await axios.get('http://localhost:3001/items').then((res) => res.data);

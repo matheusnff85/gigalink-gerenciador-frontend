@@ -5,6 +5,9 @@ function Produtos() {
   const [produtos, setProdutos] = useState([]);
   const [editModeIsOn, setEditMode] = useState(false);
   const [currentEditId, setCurrentEditId] = useState('');
+  const [stateNome, setStateNome] = useState('');
+  const [stateDescricao, setStateDescricao] = useState('');
+  const [stateIdFornecedor, setStateIdFornecedor] = useState('');
 
   async function getProdutos() {
     const apiData = await axios.get('http://localhost:3001/produtos').then((res) => res.data);

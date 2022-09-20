@@ -5,6 +5,12 @@ function Fornecedores() {
   const [fornecedores, setFornecedores] = useState([]);
   const [editModeIsOn, setEditMode] = useState(false);
   const [currentEditId, setCurrentEditId] = useState('');
+  const [stateNome, setNome] = useState('');
+  const [stateDescricao, setDescricao] = useState('');
+  const [stateCidade, setStateCidade] = useState('');
+  const [stateEndereco, setStateEndereco] = useState('');
+  const [stateBairro, setStateBairro] = useState('');
+  const [stateNumero, setStateNumero] = useState('');
 
   async function getFornecedores() {
     const apiData = await axios.get('http://localhost:3001/fornecedores').then((res) => res.data);

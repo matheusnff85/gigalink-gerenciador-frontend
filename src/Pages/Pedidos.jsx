@@ -5,6 +5,11 @@ function Pedidos() {
   const [pedidos, setPedidos] = useState([]);
   const [editModeIsOn, setEditMode] = useState(false);
   const [currentEditId, setCurrentEditId] = useState('');
+  const [stateNotaFiscal, setStateNotaFiscal] = useState('');
+  const [stateValorFrete, setStateValorFrete] = useState('');
+  const [stateDesconto, setStateDesconto] = useState('');
+  const [stateValorTotal, setStateValorTotal] = useState('');
+  const [stateIdTransportadora, setStateIdTransportadora] = useState('');
 
   async function getPedidos() {
     const apiData = await axios.get('http://localhost:3001/pedidos').then((res) => res.data);

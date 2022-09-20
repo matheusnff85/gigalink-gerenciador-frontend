@@ -5,6 +5,7 @@ function Transportadoras() {
   const [transportadoras, setTransportadoras] = useState([]);
   const [editModeIsOn, setEditMode] = useState(false);
   const [currentEditId, setCurrentEditId] = useState('');
+  const [stateNome, setStateNome] = useState('');
 
   async function getTransportadoras() {
     const apiData = await axios.get('http://localhost:3001/transportadoras').then((res) => res.data);
