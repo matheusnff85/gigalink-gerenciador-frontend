@@ -25,12 +25,18 @@ function Emails() {
     }
   };
 
-  function enableEditMode(id) {
+  function enableEditMode(id, emailObj) {
     if(currentEditId === id) {
       setCurrentEditId('');
+      setStateEmail('');
+      setStateReferencia('');
+      setStateIdFornecedor('');
       setEditMode(false);
     } else {
       setCurrentEditId(id);
+      setStateEmail(emailObj.email);
+      setStateReferencia(emailObj.referencia);
+      setStateIdFornecedor(emailObj.idFornecedor);
       setEditMode(true);
     }
   }
@@ -98,14 +104,14 @@ function Emails() {
           </tr>
         </thead>
         <tbody>
-        { emails.length > 0 && emails.map(({ id, email, referencia, idFornecedor, fornecedores }) => (
+        { emails.length > 0 && emails.map(({ id, email, referencia, idFornecedor, fornecedores }, index) => (
             <tr key={ id }>
               <td>{ id }</td>
               <td>{ email }</td>
               <td>{ referencia }</td>
               <td>{ idFornecedor }</td>
               <td>{ fornecedores.nome }</td>
-              <td><button onClick={ () => enableEditMode(id) }>Editar</button></td>
+              <td><button onClick={ () => enableEditMode(id, emails[index]) }>Editar</button></td>
               <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
             </tr>
           ))}

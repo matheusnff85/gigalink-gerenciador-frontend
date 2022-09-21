@@ -23,12 +23,14 @@ function Transportadoras() {
     }
   };
 
-  function enableEditMode(id) {
+  function enableEditMode(id, nome) {
     if(currentEditId === id) {
       setCurrentEditId('');
+      setStateNome('');
       setEditMode(false);
     } else {
       setCurrentEditId(id);
+      setStateNome(nome);
       setEditMode(true);
     }
   }
@@ -77,7 +79,7 @@ function Transportadoras() {
             <tr key={ id }>
               <td>{ id }</td>
               <td>{ nome }</td>
-              <td><button onClick={ () => enableEditMode(id) }>Editar</button></td>
+              <td><button onClick={ () => enableEditMode(id, nome) }>Editar</button></td>
               <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
             </tr>
           ))}

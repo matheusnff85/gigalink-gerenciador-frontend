@@ -26,12 +26,20 @@ function Items() {
     }
   };
 
-  function enableEditMode(id) {
+  function enableEditMode(id, itemsObj) {
     if(currentEditId === id) {
       setCurrentEditId('');
+      setStateQuantidade('');
+      setStateValor('');
+      setStateIdProduto('');
+      setStateidPedido('');
       setEditMode(false);
     } else {
       setCurrentEditId(id);
+      setStateQuantidade(itemsObj.quantidade);
+      setStateValor(itemsObj.valor);
+      setStateIdProduto(itemsObj.idProduto);
+      setStateidPedido(itemsObj.idPedido);
       setEditMode(true);
     }
   }
@@ -112,7 +120,7 @@ function Items() {
         </thead>
         <tbody>
         { items.length > 0 && items.map((
-          { id, quantidade, valor, idProduto, idPedido, produtos, pedidos }) => (
+          { id, quantidade, valor, idProduto, idPedido, produtos, pedidos }, index) => (
             <tr key={ id }>
               <td>{ id }</td>
               <td>{ quantidade }</td>
@@ -121,7 +129,7 @@ function Items() {
               <td>{ produtos.nome }</td>
               <td>{ idPedido }</td>
               <td>{ pedidos.notafiscal }</td>
-              <td><button onClick={ () => enableEditMode(id) }>Editar</button></td>
+              <td><button onClick={ () => enableEditMode(id, items[index]) }>Editar</button></td>
               <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
             </tr>
           ))}

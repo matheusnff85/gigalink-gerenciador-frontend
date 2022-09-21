@@ -25,12 +25,18 @@ function Produtos() {
     }
   };
 
-  function enableEditMode(id) {
+  function enableEditMode(id, produtosObj) {
     if(currentEditId === id) {
       setCurrentEditId('');
+      setStateNome('');
+      setStateDescricao('');
+      setStateIdFornecedor('');
       setEditMode(false);
     } else {
       setCurrentEditId(id);
+      setStateNome(produtosObj.nome);
+      setStateDescricao(produtosObj.descricao);
+      setStateIdFornecedor(produtosObj.idFornecedor);
       setEditMode(true);
     }
   }
@@ -98,14 +104,14 @@ function Produtos() {
           </tr>
         </thead>
         <tbody>
-          { produtos.length > 0 && produtos.map(({ id, nome, descricao, idFornecedor, fornecedores }) => (
+          { produtos.length > 0 && produtos.map(({ id, nome, descricao, idFornecedor, fornecedores }, index) => (
             <tr key={ id }>
               <td>{ id }</td>
               <td>{ nome }</td>
               <td>{ descricao }</td>
               <td>{ idFornecedor }</td>
               <td>{ fornecedores.nome }</td>
-              <td><button onClick={ () => enableEditMode(id) }>Editar</button></td>
+              <td><button onClick={ () => enableEditMode(id, produtos[index]) }>Editar</button></td>
               <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
             </tr>
           ))}

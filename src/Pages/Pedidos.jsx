@@ -27,12 +27,22 @@ function Pedidos() {
     }
   };
 
-  function enableEditMode(id) {
+  function enableEditMode(id, pedidosObj) {
     if(currentEditId === id) {
       setCurrentEditId('');
+      setStateNotaFiscal('');
+      setStateValorFrete('');
+      setStateDesconto('');
+      setStateValorTotal('');
+      setStateIdTransportadora('');
       setEditMode(false);
     } else {
       setCurrentEditId(id);
+      setStateNotaFiscal(pedidosObj.notafiscal);
+      setStateValorFrete(pedidosObj.valorfrete);
+      setStateDesconto(pedidosObj.desconto);
+      setStateValorTotal(pedidosObj.valortotal);
+      setStateIdTransportadora(pedidosObj.idTransportadora);
       setEditMode(true);
     }
   }
@@ -124,7 +134,7 @@ function Pedidos() {
         </thead>
         <tbody>
         { pedidos.length > 0 && pedidos.map((
-          { id, datahora, notafiscal, valorfrete, desconto, valortotal, idTransportadora, transportadoras }) => (
+          { id, datahora, notafiscal, valorfrete, desconto, valortotal, idTransportadora, transportadoras }, index) => (
             <tr key={ id }>
               <td>{ id }</td>
               <td>{ datahora }</td>
@@ -134,7 +144,7 @@ function Pedidos() {
               <td>{ valortotal }</td>
               <td>{ idTransportadora }</td>
               <td>{ transportadoras.nome }</td>
-              <td><button onClick={ () => enableEditMode(id) }>Editar</button></td>
+              <td><button onClick={ () => enableEditMode(id, pedidos[index]) }>Editar</button></td>
               <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
             </tr>
           ))}

@@ -28,12 +28,24 @@ function Fornecedores() {
     }
   };
 
-  function enableEditMode(id) {
+  function enableEditMode(id, fornecedorObj) {
     if(currentEditId === id) {
       setCurrentEditId('');
+      setStateNome('');
+      setStateDescricao('');
+      setStateCidade('');
+      setStateEndereco('');
+      setStateBairro('');
+      setStateNumero('');
       setEditMode(false);
     } else {
       setCurrentEditId(id);
+      setStateNome(fornecedorObj.nome);
+      setStateDescricao(fornecedorObj.descricao);
+      setStateCidade(fornecedorObj.cidade);
+      setStateEndereco(fornecedorObj.endereco);
+      setStateBairro(fornecedorObj.bairro);
+      setStateNumero(fornecedorObj.numero);
       setEditMode(true);
     }
   }
@@ -137,7 +149,7 @@ function Fornecedores() {
         </thead>
         <tbody>
         { fornecedores.length > 0 && fornecedores.map((
-          { id, nome, descricao, cidade, endereco, bairro, numero, emails, telefones, produtos }) => (
+          { id, nome, descricao, cidade, endereco, bairro, numero, emails, telefones, produtos }, index) => (
             <tr key={ id }>
               <td>{ id }</td>
               <td>{ nome }</td>
@@ -149,7 +161,7 @@ function Fornecedores() {
               <td>{ emails.length }</td>
               <td>{ telefones.length }</td>
               <td>{ produtos.length }</td>
-              <td><button onClick={ () => enableEditMode(id) }>Editar</button></td>
+              <td><button onClick={ () => enableEditMode(id, fornecedores[index]) }>Editar</button></td>
               <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
             </tr>
           ))}

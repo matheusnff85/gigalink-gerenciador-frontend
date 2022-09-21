@@ -26,12 +26,20 @@ function Telefones() {
     }
   };
 
-  function enableEditMode(id) {
+  function enableEditMode(id, telefonesObj) {
     if(currentEditId === id) {
       setCurrentEditId('');
+      setStateDDD('');
+      setStateNumero('');
+      setStateReferencia('');
+      setStateIdFornecedor('');
       setEditMode(false);
     } else {
       setCurrentEditId(id);
+      setStateDDD(telefonesObj.ddd);
+      setStateNumero(telefonesObj.numero);
+      setStateReferencia(telefonesObj.referencia);
+      setStateIdFornecedor(telefonesObj.idFornecedor);
       setEditMode(true);
     }
   }
@@ -110,14 +118,14 @@ function Telefones() {
         </thead>
         <tbody>
         { telefones.length > 0 && telefones.map((
-          { id, ddd, numero, referencia, idFornecedor, fornecedores }) => (
+          { id, ddd, numero, referencia, idFornecedor, fornecedores }, index) => (
             <tr key={ id }>
               <td>{ id }</td>
               <td>{ `${ddd} ${numero}` }</td>
               <td>{ referencia }</td>
               <td>{ idFornecedor }</td>
               <td>{ fornecedores.nome }</td>
-              <td><button onClick={ () => enableEditMode(id) }>Editar</button></td>
+              <td><button onClick={ () => enableEditMode(id, telefones[index]) }>Editar</button></td>
               <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
             </tr>
           ))}
