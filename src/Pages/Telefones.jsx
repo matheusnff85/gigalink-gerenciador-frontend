@@ -169,6 +169,9 @@ function Telefones() {
           ))}
         </tbody>
       </table>
+      <footer>
+        <h4>Desenvolvido por <a href='https://www.linkedin.com/in/matheus-marinhodsp/'>Matheus Marinho</a></h4>
+      </footer>
     </>
   );
 }
