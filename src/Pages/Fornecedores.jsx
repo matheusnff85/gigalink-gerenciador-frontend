@@ -36,9 +36,28 @@ function Fornecedores() {
       endereco: stateEndereco,
       bairro: stateBairro,
       numero: Number(stateNumero),
-    }
+    };
     try {
       const result = await axios.post('http://localhost:3001/fornecedores', newFornecedor)
+        .then((res) => res);
+      window.alert(`${result.status} - ${result.statusText}`);
+      window.location.reload();
+    } catch (error) {
+      window.alert(`Erro:${error.response.status} - ${error.response.data.message}`);
+    }
+  };
+
+  async function editItem(id) {
+    const newFornecedor = {
+      nome: stateNome,
+      descricao: stateDescricao,
+      cidade: stateCidade,
+      endereco: stateEndereco,
+      bairro: stateBairro,
+      numero: Number(stateNumero),
+    };
+    try {
+      const result = await axios.put(`http://localhost:3001/fornecedores/${id}`, newFornecedor)
         .then((res) => res);
       window.alert(`${result.status} - ${result.statusText}`);
       window.location.reload();
@@ -139,7 +158,9 @@ function Fornecedores() {
         </label>
         { editModeIsOn 
           ? (
-            <button>
+            <button
+              onClick={ () => editItem(currentEditId) }
+            >
               Editar Fornecedor
             </button>
           )

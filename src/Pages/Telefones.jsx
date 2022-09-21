@@ -32,9 +32,26 @@ function Telefones() {
       numero: stateNumero,
       referencia: stateReferencia,
       idFornecedor: Number(stateIdFornecedor),
-    }
+    };
     try {
       const result = await axios.post('http://localhost:3001/telefones', newTelefone)
+        .then((res) => res);
+      window.alert(`${result.status} - ${result.statusText}`);
+      window.location.reload();
+    } catch (error) {
+      window.alert(`Erro:${error.response.status} - ${error.response.data.message}`);
+    }
+  };
+
+  async function editItem(id) {
+    const newTelefone = {
+      ddd: stateDDD,
+      numero: stateNumero,
+      referencia: stateReferencia,
+      idFornecedor: Number(stateIdFornecedor),
+    };
+    try {
+      const result = await axios.put(`http://localhost:3001/telefones/${id}`, newTelefone)
         .then((res) => res);
       window.alert(`${result.status} - ${result.statusText}`);
       window.location.reload();
@@ -111,7 +128,9 @@ function Telefones() {
         </label>
         { editModeIsOn 
           ? (
-            <button>
+            <button
+              onClick={ () => editItem(currentEditId) }
+            >
               Editar Telefone
             </button>
           )

@@ -30,9 +30,25 @@ function Emails() {
       email: stateEmail,
       referencia: stateReferencia,
       idFornecedor: Number(stateIdFornecedor),
-    }
+    };
     try {
       const result = await axios.post('http://localhost:3001/emails', newEmail)
+        .then((res) => res);
+      window.alert(`${result.status} - ${result.statusText}`);
+      window.location.reload();
+    } catch (error) {
+      window.alert(`Erro:${error.response.status} - ${error.response.data.message}`);
+    }
+  };
+
+  async function editItem(id) {
+    const newEmail = { 
+      email: stateEmail,
+      referencia: stateReferencia,
+      idFornecedor: Number(stateIdFornecedor),
+    };
+    try {
+      const result = await axios.put(`http://localhost:3001/emails/${id}`, newEmail)
         .then((res) => res);
       window.alert(`${result.status} - ${result.statusText}`);
       window.location.reload();
@@ -97,7 +113,9 @@ function Emails() {
         </label>
         { editModeIsOn 
           ? (
-            <button>
+            <button
+              onClick={ () => editItem(currentEditId) }
+            >
               Editar Email
             </button>
           )

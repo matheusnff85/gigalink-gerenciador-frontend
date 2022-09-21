@@ -26,9 +26,23 @@ function Transportadoras() {
   async function saveNewItem() {
     const newTransportadora = {
       nome: stateNome,
-    }
+    };
     try {
       const result = await axios.post('http://localhost:3001/transportadoras', newTransportadora)
+        .then((res) => res);
+      window.alert(`${result.status} - ${result.statusText}`);
+      window.location.reload();
+    } catch (error) {
+      window.alert(`Erro:${error.response.status} - ${error.response.data.message}`);
+    }
+  };
+
+  async function editItem(id) {
+    const newTransportadora = {
+      nome: stateNome,
+    }
+    try {
+      const result = await axios.put(`http://localhost:3001/transportadoras/${id}`, newTransportadora)
         .then((res) => res);
       window.alert(`${result.status} - ${result.statusText}`);
       window.location.reload();
@@ -69,7 +83,9 @@ function Transportadoras() {
         </label>
         { editModeIsOn 
           ? (
-            <button>
+            <button
+              onClick={ () => editItem(currentEditId) }
+            >
               Editar Transportadora
             </button>
           )
