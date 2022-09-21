@@ -1,0 +1,123 @@
+.mainContainer {
+  background-color: var(--main-white);
+  height: 100vh;
+  width: 100vw;
+}
+
+.mainTitle {
+  color: var(--main-black);
+  text-shadow: 1px 1px 0.05rem var(--main-green);
+  font-size: 50px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.registerCount {
+  color: var(--main-black);
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.labelsDiv {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 15px;
+  padding: 5px;
+  width: 100vw;
+}
+
+.labelsDiv label {
+  font-weight: 550;
+  margin-right: 3px;
+  padding: 3px;
+}
+
+.labelsDiv input {
+  padding: 4px;
+}
+
+.mainEditBtn:active {
+  background-color: var(--main-green);
+}
+
+.mainEditBtn {
+  align-self: center;
+  background-color: var(--main-black);
+  border: 1px solid var(--main-white);
+  border-radius: 10px;
+  box-shadow: 2px 2px 0.2rem var(--main-purple);
+  color: var(--main-white);
+  font-size: 15px;
+  font-weight: 550;
+  height: 1.7rem;
+  margin-left: 5px;
+  width: 14rem;
+}
+
+.mainRegisterBtn:active {
+  background-color: var(--main-black);
+}
+
+.mainRegisterBtn {
+  align-self: center;
+  background-color: var(--main-green);
+  border: 1px solid var(--main-white);
+  border-radius: 10px;
+  box-shadow: 2px 2px 0.2rem var(--main-purple);
+  color: var(--main-white);
+  font-size: 15px;
+  font-weight: 550;
+  height: 1.7rem;
+  margin-left: 5px;
+  width: 14rem;
+}
+
+.mainTable {
+  background-color: var(--main-purple);
+  border: 1.5px solid rgb(41, 41, 41);
+  border-radius: 5px;
+  box-shadow: 2px 2px 0.5rem var(--main-purple);
+  margin: auto;
+  width: 93vw;
+}
+
+.mainTable th {
+  background-color: var(--main-blue);
+  color: var(--main-black);
+  font-size: 1.22rem;
+  padding: 10px;
+  text-decoration: underline;
+}
+
+.mainTable td {
+  background-color: rgb(255, 255, 255);
+  color: var(--main-black);
+  padding: 5px;
+}
+
+.tableEditBtn:active {
+  background-color: var(--main-green);
+}
+
+.tableEditBtn {
+  background-color: var(--main-black);
+  border-radius: 10px;
+  color: var(--main-white);
+  font-weight: 550;
+  width: 100%;
+}
+
+.tableDeleteBtn:active {
+  background-color: var(--main-yellow);
+}
+
+.tableDeleteBtn {
+  background-color: rgb(180, 40, 40);
+  border-radius: 10px;
+  color: var(--main-white);
+  font-weight: 550;
+  width: 100%;
+}

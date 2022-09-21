@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from '../Css/main.module.css';
 
 function Items() {
   const [items, setItems] = useState([]);
@@ -83,10 +84,10 @@ function Items() {
   }, []);
 
   return(
-    <>
-      <h1>Gerenciar Items</h1>
-      <h3>{ `Items registrados: ${ items.length }` }</h3>
-      <div>
+    <main className={ styled.mainContainer }>
+      <h1 className={ styled.mainTitle }>Gerenciar Items</h1>
+      <h3 className={ styled.registerCount }>{ `Items registrados: ${ items.length }` }</h3>
+      <div className={ styled.labelsDiv }>
         <label htmlFor="quantidade">
           Quantidade:
           <input
@@ -130,6 +131,7 @@ function Items() {
           ? (
             <button
               onClick={ () => editItem(currentEditId) }
+              className={ styled.mainEditBtn }
             >
               Editar Item
             </button>
@@ -137,12 +139,13 @@ function Items() {
           : (
             <button
               onClick={ () => saveNewItem() }
+              className={ styled.mainRegisterBtn }
             >
               Cadastrar Item
             </button>
         )}
       </div>
-      <table>
+      <table className={ styled.mainTable }>
         <thead>
           <tr>
             <th scope="col">Id</th>
@@ -167,8 +170,22 @@ function Items() {
               <td>{ produtos.nome }</td>
               <td>{ idPedido }</td>
               <td>{ pedidos.notafiscal }</td>
-              <td><button onClick={ () => enableEditMode(id, items[index]) }>Editar</button></td>
-              <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
+              <td>
+                <button 
+                  onClick={ () => enableEditMode(id, items[index]) }
+                  className={ styled.tableEditBtn }
+                >
+                  Editar
+                </button>
+                </td>
+              <td>
+                <button 
+                  onClick={ () => deleteItem(id) }
+                  className={ styled.tableDeleteBtn }
+                >
+                  Excluir
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -176,7 +193,7 @@ function Items() {
       <footer>
         <h4>Desenvolvido por <a href='https://www.linkedin.com/in/matheus-marinhodsp/'>Matheus Marinho</a></h4>
       </footer>
-    </>
+    </main>
   );
 }
 

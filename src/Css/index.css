@@ -1,3 +1,12 @@
+:root {
+  --main-blue: #4CCEF1;
+  --main-green: #0CCA4A;
+  --main-white: #e7e7e7;
+  --main-purple: #736CED;
+  --main-yellow: #F1D302;
+  --main-black: #011627;
+}
+
 html {
   box-sizing: border-box;
   font-size: 16px;
@@ -24,6 +33,25 @@ img {
 
 body {
   background-color: var(--main-white);
-  height: 100vh;
   width: 100vw;
+}
+
+footer {
+  align-items: center;
+  background-color: var(--main-black);
+  bottom: 0;
+  box-shadow: -2px -2px 0.5rem var(--main-purple);
+  color: var(--main-yellow);
+  display: flex;
+  flex-direction: row;
+  height: 10vh;
+  justify-content: center;
+  text-align: center;
+  position: fixed;
+  width: 100vw;
+}
+
+footer h4 {
+  font-size: 19px;
+  font-weight: 700;
 }
