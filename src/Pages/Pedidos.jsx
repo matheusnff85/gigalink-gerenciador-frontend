@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from '../Css/main.module.css';
 
 function Pedidos() {
   const [pedidos, setPedidos] = useState([]);
@@ -88,10 +89,10 @@ function Pedidos() {
   }, []);
 
   return(
-    <>
-      <h1>Gerenciar Pedidos</h1>
-      <h3>{ `Pedidos registrados: ${ pedidos.length }` }</h3>
-      <div>
+    <main className={ styled.mainContainer }>
+      <h1 className={ styled.mainTitle }>Gerenciar Pedidos</h1>
+      <h3 className={ styled.registerCount }>{ `Pedidos registrados: ${ pedidos.length }` }</h3>
+      <div className={ styled.labelsDiv }>
         <label htmlFor="notafiscal">
           Nota Fiscal:
           <input
@@ -145,6 +146,7 @@ function Pedidos() {
           ? (
             <button
               onClick={ () => editItem(currentEditId) }
+              className={ styled.mainEditBtn }
             >
               Editar Pedido
             </button>
@@ -152,12 +154,13 @@ function Pedidos() {
           : (
             <button
               onClick={ () => saveNewItem() }
+              className={ styled.mainRegisterBtn }
             >
               Cadastrar Pedido
             </button>
         )}
       </div>
-      <table>
+      <table className={ styled.mainTable }>
         <thead>
           <tr>
             <th scope="col">Id</th>
@@ -184,8 +187,22 @@ function Pedidos() {
               <td>{ valortotal }</td>
               <td>{ idTransportadora }</td>
               <td>{ transportadoras.nome }</td>
-              <td><button onClick={ () => enableEditMode(id, pedidos[index]) }>Editar</button></td>
-              <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
+              <td>
+                <button 
+                  onClick={ () => enableEditMode(id, pedidos[index]) }
+                  className={ styled.tableEditBtn }
+                >
+                  Editar
+                </button>
+              </td>
+              <td>
+                <button 
+                  onClick={ () => deleteItem(id) }
+                  className={ styled.tableDeleteBtn }
+                >
+                  Excluir
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -193,7 +210,7 @@ function Pedidos() {
       <footer>
         <h4>Desenvolvido por <a href='https://www.linkedin.com/in/matheus-marinhodsp/'>Matheus Marinho</a></h4>
       </footer>
-    </>
+    </main>
   );
 }
 

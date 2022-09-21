@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from '../Css/main.module.css';
 
 function Transportadoras() {
   const [transportadoras, setTransportadoras] = useState([]);
@@ -68,10 +69,10 @@ function Transportadoras() {
   }, []);
 
   return(
-    <>
-      <h1>Gerenciar Transportadoras</h1>
-      <h3>{ `Transportadoras cadastradas: ${ transportadoras.length }` }</h3>
-      <div>
+    <main className={ styled.mainContainer }>
+      <h1 className={ styled.mainTitle }>Gerenciar Transportadoras</h1>
+      <h3 className={ styled.registerCount }>{ `Transportadoras cadastradas: ${ transportadoras.length }` }</h3>
+      <div className={ styled.labelsDiv }>
         <label htmlFor="nome">
           Nome:
           <input
@@ -85,6 +86,7 @@ function Transportadoras() {
           ? (
             <button
               onClick={ () => editItem(currentEditId) }
+              className={ styled.mainEditBtn }
             >
               Editar Transportadora
             </button>
@@ -92,12 +94,13 @@ function Transportadoras() {
           : (
             <button
               onClick={ () => saveNewItem() }
+              className={ styled.mainRegisterBtn }
             >
               Cadastrar Transportadora
             </button>
           )}
       </div>
-      <table>
+      <table className={ styled.mainTable }>
         <thead>
           <tr>
             <th scope="col">Id</th>
@@ -111,8 +114,22 @@ function Transportadoras() {
             <tr key={ id }>
               <td>{ id }</td>
               <td>{ nome }</td>
-              <td><button onClick={ () => enableEditMode(id, nome) }>Editar</button></td>
-              <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
+              <td>
+                <button 
+                  onClick={ () => enableEditMode(id, nome) }
+                  className={ styled.tableEditBtn }
+                >
+                  Editar
+                </button>
+              </td>
+              <td>
+                <button 
+                  onClick={ () => deleteItem(id) }
+                  className={ styled.tableDeleteBtn }
+                >
+                  Excluir
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -120,7 +137,7 @@ function Transportadoras() {
       <footer>
         <h4>Desenvolvido por <a href='https://www.linkedin.com/in/matheus-marinhodsp/'>Matheus Marinho</a></h4>
       </footer>
-    </>
+    </main>
   );
 }
 

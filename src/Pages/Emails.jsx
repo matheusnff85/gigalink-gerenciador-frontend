@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from '../Css/main.module.css';
 
 function Emails() {
   const [emails, setEmails] = useState([]);
@@ -78,10 +79,10 @@ function Emails() {
   }, []);
 
   return(
-    <>
-      <h1>Gerenciar Emails</h1>
-      <h4>{ `Emails registrados: ${ emails.length }.` }</h4>
-      <div>
+    <main className={ styled.mainContainer }>
+      <h1 className={ styled.mainTitle }>Gerenciar Emails</h1>
+      <h4 className={ styled.registerCount }>{ `Emails registrados: ${ emails.length }.` }</h4>
+      <div className={ styled.labelsDiv }>
         <label htmlFor="email">
           Email:
           <input
@@ -115,6 +116,7 @@ function Emails() {
           ? (
             <button
               onClick={ () => editItem(currentEditId) }
+              className={ styled.mainEditBtn }
             >
               Editar Email
             </button>
@@ -122,12 +124,13 @@ function Emails() {
           : (
             <button
               onClick={ () => saveNewItem() }
+              className={ styled.mainRegisterBtn }
             >
               Cadastrar Email
             </button>
         )}
       </div>
-      <table>
+      <table className={ styled.mainTable }>
         <thead>
           <tr>
             <th scope="col">Id</th>
@@ -147,8 +150,22 @@ function Emails() {
               <td>{ referencia }</td>
               <td>{ idFornecedor }</td>
               <td>{ fornecedores.nome }</td>
-              <td><button onClick={ () => enableEditMode(id, emails[index]) }>Editar</button></td>
-              <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
+              <td>
+                <button 
+                onClick={ () => enableEditMode(id, emails[index]) }
+                className={ styled.tableEditBtn }
+                >
+                  Editar
+                </button>
+              </td>
+              <td>
+                <button 
+                  onClick={ () => deleteItem(id) }
+                  className={ styled.tableDeleteBtn }
+                >
+                  Excluir
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -156,7 +173,7 @@ function Emails() {
       <footer>
         <h4>Desenvolvido por <a href='https://www.linkedin.com/in/matheus-marinhodsp/'>Matheus Marinho</a></h4>
       </footer>
-    </>
+    </main>
   );
 }
 

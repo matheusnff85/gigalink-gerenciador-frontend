@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from '../Css/main.module.css';
 
 function Fornecedores() {
   const [fornecedores, setFornecedores] = useState([]);
@@ -93,10 +94,10 @@ function Fornecedores() {
   }, []);
 
   return(
-    <>
-      <h1>Gerenciar Fornecedores</h1>
-      <h3>{ `Fornecedores cadastrados: ${ fornecedores.length }.`}</h3>
-      <div>
+    <main className={ styled.mainContainer }>
+      <h1 className={ styled.mainTitle }>Gerenciar Fornecedores</h1>
+      <h3 className={ styled.registerCount }>{ `Fornecedores cadastrados: ${ fornecedores.length }.`}</h3>
+      <div className={ styled.labelsDiv }>
         <label htmlFor="nome">
           Nome:
           <input
@@ -160,6 +161,7 @@ function Fornecedores() {
           ? (
             <button
               onClick={ () => editItem(currentEditId) }
+              className={ styled.mainEditBtn }
             >
               Editar Fornecedor
             </button>
@@ -167,12 +169,13 @@ function Fornecedores() {
           : (
             <button
               onClick={ () => saveNewItem() }
+              className={ styled.mainRegisterBtn }
             >
               Cadastrar Fornecedor
             </button>
         )}
       </div>
-      <table>
+      <table className={ styled.mainTable }>
         <thead>
           <tr>
             <th scope="col">Id</th>
@@ -203,8 +206,22 @@ function Fornecedores() {
               <td>{ emails.length }</td>
               <td>{ telefones.length }</td>
               <td>{ produtos.length }</td>
-              <td><button onClick={ () => enableEditMode(id, fornecedores[index]) }>Editar</button></td>
-              <td><button onClick={ () => deleteItem(id) }>Excluir</button></td>
+              <td>
+                <button 
+                  onClick={ () => enableEditMode(id, fornecedores[index]) }
+                  className={ styled.tableEditBtn }
+                >
+                  Editar
+                </button>
+              </td>
+              <td>
+                <button 
+                  onClick={ () => deleteItem(id) }
+                  className={ styled.tableDeleteBtn }
+                >
+                  Excluir
+                </button>
+                </td>
             </tr>
           ))}
         </tbody>
@@ -212,7 +229,7 @@ function Fornecedores() {
       <footer>
         <h4>Desenvolvido por <a href='https://www.linkedin.com/in/matheus-marinhodsp/'>Matheus Marinho</a></h4>
       </footer>
-    </>
+    </main>
   );
 }
 

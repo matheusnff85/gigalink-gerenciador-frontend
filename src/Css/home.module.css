@@ -32,10 +32,11 @@
   background-color: var(--main-black);
   border: 0.18rem solid var(--main-green);
   border-radius: 17px;
-  color: var(--main-yellow);
+  box-shadow: -1px -0.5px 0.2rem var(--main-black);
+  color: var(--main-white);
   font-size: 15px;
   font-weight: 700;
   margin-left: 15px;
-  box-shadow: 2px 2px 0.3rem var(--main-blue);
+  text-decoration: underline;
   padding: 18px;
 }
