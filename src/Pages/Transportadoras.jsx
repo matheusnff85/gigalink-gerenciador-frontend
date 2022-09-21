@@ -23,6 +23,20 @@ function Transportadoras() {
     }
   };
 
+  async function saveNewItem() {
+    const newTransportadora = {
+      nome: stateNome,
+    }
+    try {
+      const result = await axios.post('http://localhost:3001/transportadoras', newTransportadora)
+        .then((res) => res);
+      window.alert(`${result.status} - ${result.statusText}`);
+      window.location.reload();
+    } catch (error) {
+      window.alert(`Erro:${error.response.status} - ${error.response.data.message}`);
+    }
+  };
+
   function enableEditMode(id, nome) {
     if(currentEditId === id) {
       setCurrentEditId('');
@@ -60,7 +74,9 @@ function Transportadoras() {
             </button>
           )
           : (
-            <button>
+            <button
+              onClick={ () => saveNewItem() }
+            >
               Cadastrar Transportadora
             </button>
           )}

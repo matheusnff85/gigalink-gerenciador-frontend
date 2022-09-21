@@ -25,6 +25,22 @@ function Emails() {
     }
   };
 
+  async function saveNewItem() {
+    const newEmail = { 
+      email: stateEmail,
+      referencia: stateReferencia,
+      idFornecedor: Number(stateIdFornecedor),
+    }
+    try {
+      const result = await axios.post('http://localhost:3001/emails', newEmail)
+        .then((res) => res);
+      window.alert(`${result.status} - ${result.statusText}`);
+      window.location.reload();
+    } catch (error) {
+      window.alert(`Erro:${error.response.status} - ${error.response.data.message}`);
+    }
+  };
+
   function enableEditMode(id, emailObj) {
     if(currentEditId === id) {
       setCurrentEditId('');
@@ -39,7 +55,7 @@ function Emails() {
       setStateIdFornecedor(emailObj.idFornecedor);
       setEditMode(true);
     }
-  }
+  };
 
   useEffect(() => {
     getEmails();
@@ -86,7 +102,9 @@ function Emails() {
             </button>
           )
           : (
-            <button>
+            <button
+              onClick={ () => saveNewItem() }
+            >
               Cadastrar Email
             </button>
         )}

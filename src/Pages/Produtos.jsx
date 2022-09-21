@@ -25,6 +25,22 @@ function Produtos() {
     }
   };
 
+  async function saveNewItem() {
+    const newProduto = {
+      nome: stateNome,
+      descricao: stateDescricao,
+      idFornecedor: Number(stateIdFornecedor),
+    }
+    try {
+      const result = await axios.post('http://localhost:3001/produtos', newProduto)
+        .then((res) => res);
+      window.alert(`${result.status} - ${result.statusText}`);
+      window.location.reload();
+    } catch (error) {
+      window.alert(`Erro:${error.response.status} - ${error.response.data.message}`);
+    }
+  };
+
   function enableEditMode(id, produtosObj) {
     if(currentEditId === id) {
       setCurrentEditId('');
@@ -39,7 +55,7 @@ function Produtos() {
       setStateIdFornecedor(produtosObj.idFornecedor);
       setEditMode(true);
     }
-  }
+  };
 
   useEffect(() => {
     getProdutos();
@@ -86,7 +102,9 @@ function Produtos() {
             </button>
           )
           : (
-            <button>
+            <button
+              onClick={ () => saveNewItem() }
+            >
               Cadastrar Produto
             </button>
         )}

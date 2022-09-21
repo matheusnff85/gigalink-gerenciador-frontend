@@ -26,6 +26,23 @@ function Items() {
     }
   };
 
+  async function saveNewItem() {
+    const newItem = {
+      quantidade: Number(stateQuantidade),
+      valor: Number(stateValor),
+      idProduto: Number(stateIdProduto),
+      idPedido: Number(stateidPedido),
+    }
+    try {
+      const result = await axios.post('http://localhost:3001/items', newItem)
+        .then((res) => res);
+      window.alert(`${result.status} - ${result.statusText}`);
+      window.location.reload();
+    } catch (error) {
+      window.alert(`Erro:${error.response.status} - ${error.response.data.message}`);
+    }
+  };
+
   function enableEditMode(id, itemsObj) {
     if(currentEditId === id) {
       setCurrentEditId('');
@@ -42,7 +59,7 @@ function Items() {
       setStateidPedido(itemsObj.idPedido);
       setEditMode(true);
     }
-  }
+  };
 
   useEffect(() => {
     getItems();
@@ -99,7 +116,9 @@ function Items() {
             </button>
           )
           : (
-            <button>
+            <button
+              onClick={ () => saveNewItem() }
+            >
               Cadastrar Item
             </button>
         )}

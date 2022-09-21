@@ -28,6 +28,25 @@ function Fornecedores() {
     }
   };
 
+  async function saveNewItem() {
+    const newFornecedor = {
+      nome: stateNome,
+      descricao: stateDescricao,
+      cidade: stateCidade,
+      endereco: stateEndereco,
+      bairro: stateBairro,
+      numero: Number(stateNumero),
+    }
+    try {
+      const result = await axios.post('http://localhost:3001/fornecedores', newFornecedor)
+        .then((res) => res);
+      window.alert(`${result.status} - ${result.statusText}`);
+      window.location.reload();
+    } catch (error) {
+      window.alert(`Erro:${error.response.status} - ${error.response.data.message}`);
+    }
+  };
+
   function enableEditMode(id, fornecedorObj) {
     if(currentEditId === id) {
       setCurrentEditId('');
@@ -48,7 +67,7 @@ function Fornecedores() {
       setStateNumero(fornecedorObj.numero);
       setEditMode(true);
     }
-  }
+  };
 
   useEffect(() => {
     getFornecedores();
@@ -125,7 +144,9 @@ function Fornecedores() {
             </button>
           )
           : (
-            <button>
+            <button
+              onClick={ () => saveNewItem() }
+            >
               Cadastrar Fornecedor
             </button>
         )}

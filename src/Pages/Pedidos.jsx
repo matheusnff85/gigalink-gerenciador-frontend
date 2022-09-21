@@ -27,6 +27,24 @@ function Pedidos() {
     }
   };
 
+  async function saveNewItem() {
+    const newPedido = {
+      notafiscal: stateNotaFiscal,
+      valorfrete: Number(stateValorFrete),
+      desconto: Number(stateDesconto),
+      valortotal: Number(stateValorTotal),
+      idTransportadora: Number(stateIdTransportadora),
+    }
+    try {
+      const result = await axios.post('http://localhost:3001/pedidos', newPedido)
+        .then((res) => res);
+      window.alert(`${result.status} - ${result.statusText}`);
+      window.location.reload();
+    } catch (error) {
+      window.alert(`Erro:${error.response.status} - ${error.response.data.message}`);
+    }
+  };
+
   function enableEditMode(id, pedidosObj) {
     if(currentEditId === id) {
       setCurrentEditId('');
@@ -45,7 +63,7 @@ function Pedidos() {
       setStateIdTransportadora(pedidosObj.idTransportadora);
       setEditMode(true);
     }
-  }
+  };
 
   useEffect(() => {
     getPedidos();
@@ -112,7 +130,9 @@ function Pedidos() {
             </button>
           )
           : (
-            <button>
+            <button
+              onClick={ () => saveNewItem() }
+            >
               Cadastrar Pedido
             </button>
         )}
