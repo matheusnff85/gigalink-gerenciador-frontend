@@ -1,0 +1,41 @@
+.title {
+  color: var(--main-purple);
+  font-weight: 900;
+  font-size: 40px;
+  text-align: center;
+  text-shadow: 1px 1px 0.2rem var(--main-black);
+}
+
+.mainContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  margin-top: 5rem;
+  width: 100%;
+}
+
+.buttonsDiv {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 7rem;
+  width: 75%;
+}
+
+.homeButton:active {
+  background-color: var(--main-purple);
+}
+
+.homeButton {
+  background-color: var(--main-black);
+  border: 0.18rem solid var(--main-green);
+  border-radius: 17px;
+  color: var(--main-yellow);
+  font-size: 15px;
+  font-weight: 700;
+  margin-left: 15px;
+  box-shadow: 2px 2px 0.3rem var(--main-blue);
+  padding: 18px;
+}
