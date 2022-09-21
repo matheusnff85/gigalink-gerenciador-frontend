@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Provider from './Context/Provider';
 import Home from './Pages/Home';
 import Fornecedores from './Pages/Fornecedores';
 import Emails from './Pages/Emails';
@@ -14,7 +13,6 @@ import Pedidos from './Pages/Pedidos';
 function App() {
   return (
     <BrowserRouter>
-      <Provider>
         <Switch>
           <Route exact path="/" component={ Home } />
           <Route exact path="/fornecedores" component={ Fornecedores } />
@@ -25,7 +23,6 @@ function App() {
           <Route exact path="/produtos" component={ Produtos } />
           <Route exact path="/pedidos" component={ Pedidos } />
         </Switch>
-      </Provider>
     </BrowserRouter>
   );
 }
