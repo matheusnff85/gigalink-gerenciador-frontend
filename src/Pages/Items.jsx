@@ -8,7 +8,7 @@ function Items() {
   const [currentEditId, setCurrentEditId] = useState('');
   const [stateQuantidade, setStateQuantidade] = useState('');
   const [stateValor, setStateValor] = useState('');
-  const [stateIdProduto, setStateIdProduto] = useState('');
+  const [stateIdProduto, setStateIdProduto] = useState(undefined);
   const [stateidPedido, setStateidPedido] = useState('');
 
   async function getItems() {
@@ -31,7 +31,7 @@ function Items() {
     const newItem = {
       quantidade: Number(stateQuantidade),
       valor: Number(stateValor),
-      idProduto: Number(stateIdProduto),
+      idProduto: stateIdProduto === undefined ? undefined : Number(stateIdProduto),
       idPedido: Number(stateidPedido),
     };
     try {
@@ -66,7 +66,7 @@ function Items() {
       setCurrentEditId('');
       setStateQuantidade('');
       setStateValor('');
-      setStateIdProduto('');
+      setStateIdProduto(undefined);
       setStateidPedido('');
       setEditMode(false);
     } else {
@@ -166,8 +166,8 @@ function Items() {
               <td>{ id }</td>
               <td>{ quantidade }</td>
               <td>{ valor }</td>
-              <td>{ idProduto }</td>
-              <td>{ produtos.nome }</td>
+              <td>{ idProduto ? idProduto : 'Não Cadastrado' }</td>
+              <td>{ produtos ? produtos.nome : 'Não Cadastrado' }</td>
               <td>{ idPedido }</td>
               <td>{ pedidos.notafiscal }</td>
               <td>

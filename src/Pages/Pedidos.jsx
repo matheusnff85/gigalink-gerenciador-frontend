@@ -10,7 +10,7 @@ function Pedidos() {
   const [stateValorFrete, setStateValorFrete] = useState('');
   const [stateDesconto, setStateDesconto] = useState('');
   const [stateValorTotal, setStateValorTotal] = useState('');
-  const [stateIdTransportadora, setStateIdTransportadora] = useState('');
+  const [stateIdTransportadora, setStateIdTransportadora] = useState(undefined);
 
   async function getPedidos() {
     const apiData = await axios.get('http://localhost:3001/pedidos').then((res) => res.data);
@@ -34,7 +34,7 @@ function Pedidos() {
       valorfrete: Number(stateValorFrete),
       desconto: Number(stateDesconto),
       valortotal: Number(stateValorTotal),
-      idTransportadora: Number(stateIdTransportadora),
+      idTransportadora: stateIdTransportadora === undefined ? undefined : Number(stateIdTransportadora),
     };
     try {
       const result = await axios.post('http://localhost:3001/pedidos', newPedido)
@@ -71,7 +71,7 @@ function Pedidos() {
       setStateValorFrete('');
       setStateDesconto('');
       setStateValorTotal('');
-      setStateIdTransportadora('');
+      setStateIdTransportadora(undefined);
       setEditMode(false);
     } else {
       setCurrentEditId(id);
@@ -185,8 +185,8 @@ function Pedidos() {
               <td>{ valorfrete }</td>
               <td>{ desconto }</td>
               <td>{ valortotal }</td>
-              <td>{ idTransportadora }</td>
-              <td>{ transportadoras.nome }</td>
+              <td>{ idTransportadora ? idTransportadora : 'Não Cadastrado' }</td>
+              <td>{ transportadoras ? transportadoras.nome : 'Não Cadastrado' }</td>
               <td>
                 <button 
                   onClick={ () => enableEditMode(id, pedidos[index]) }

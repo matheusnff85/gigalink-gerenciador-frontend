@@ -8,7 +8,7 @@ function Produtos() {
   const [currentEditId, setCurrentEditId] = useState('');
   const [stateNome, setStateNome] = useState('');
   const [stateDescricao, setStateDescricao] = useState('');
-  const [stateIdFornecedor, setStateIdFornecedor] = useState('');
+  const [stateIdFornecedor, setStateIdFornecedor] = useState(undefined);
 
   async function getProdutos() {
     const apiData = await axios.get('http://localhost:3001/produtos').then((res) => res.data);
@@ -30,7 +30,7 @@ function Produtos() {
     const newProduto = {
       nome: stateNome,
       descricao: stateDescricao,
-      idFornecedor: Number(stateIdFornecedor),
+      idFornecedor: stateIdFornecedor === undefined ? undefined : Number(stateIdFornecedor),
     };
     try {
       const result = await axios.post('http://localhost:3001/produtos', newProduto)
@@ -46,7 +46,7 @@ function Produtos() {
     const newProduto = {
       nome: stateNome,
       descricao: stateDescricao,
-      idFornecedor: Number(stateIdFornecedor),
+      idFornecedor: stateIdFornecedor,
     };
     try {
       const result = await axios.put(`http://localhost:3001/produtos/${id}`, newProduto)
@@ -63,7 +63,7 @@ function Produtos() {
       setCurrentEditId('');
       setStateNome('');
       setStateDescricao('');
-      setStateIdFornecedor('');
+      setStateIdFornecedor(undefined);
       setEditMode(false);
     } else {
       setCurrentEditId(id);
@@ -148,8 +148,8 @@ function Produtos() {
               <td>{ id }</td>
               <td>{ nome }</td>
               <td>{ descricao }</td>
-              <td>{ idFornecedor }</td>
-              <td>{ fornecedores.nome }</td>
+              <td>{ idFornecedor ? idFornecedor : 'Não Cadastrado' }</td>
+              <td>{ fornecedores ? fornecedores.nome : 'Não Cadastrado' }</td>
               <td>
                 <button 
                   onClick={ () => enableEditMode(id, produtos[index]) }

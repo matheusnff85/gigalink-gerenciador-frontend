@@ -8,7 +8,7 @@ function Emails() {
   const [currentEditId, setCurrentEditId] = useState('');
   const [stateEmail, setStateEmail] = useState('');
   const [stateReferencia, setStateReferencia] = useState('');
-  const [stateIdFornecedor, setStateIdFornecedor] = useState('');
+  const [stateIdFornecedor, setStateIdFornecedor] = useState(undefined);
 
   async function getEmails() {
     const apiData = await axios.get('http://localhost:3001/emails').then((res) => res.data);
@@ -30,7 +30,7 @@ function Emails() {
     const newEmail = { 
       email: stateEmail,
       referencia: stateReferencia,
-      idFornecedor: Number(stateIdFornecedor),
+      idFornecedor: stateIdFornecedor === undefined ? undefined : Number(stateIdFornecedor),
     };
     try {
       const result = await axios.post('http://localhost:3001/emails', newEmail)
@@ -63,7 +63,7 @@ function Emails() {
       setCurrentEditId('');
       setStateEmail('');
       setStateReferencia('');
-      setStateIdFornecedor('');
+      setStateIdFornecedor(undefined);
       setEditMode(false);
     } else {
       setCurrentEditId(id);
@@ -148,8 +148,8 @@ function Emails() {
               <td>{ id }</td>
               <td>{ email }</td>
               <td>{ referencia }</td>
-              <td>{ idFornecedor }</td>
-              <td>{ fornecedores.nome }</td>
+              <td>{ idFornecedor || 'Não Cadastrado' }</td>
+              <td>{ fornecedores ? fornecedores.nome : 'Não Cadastrado' }</td>
               <td>
                 <button 
                 onClick={ () => enableEditMode(id, emails[index]) }
