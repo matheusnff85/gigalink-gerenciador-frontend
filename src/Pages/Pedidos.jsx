@@ -4,6 +4,7 @@ import styled from '../Css/main.module.css';
 
 function Pedidos() {
   const [pedidos, setPedidos] = useState([]);
+  const [transportadoras, setTransportadoras] = useState([]);
   const [editModeIsOn, setEditMode] = useState(false);
   const [currentEditId, setCurrentEditId] = useState('');
   const [stateNotaFiscal, setStateNotaFiscal] = useState('');
@@ -15,6 +16,11 @@ function Pedidos() {
   async function getPedidos() {
     const apiData = await axios.get('http://localhost:3001/pedidos').then((res) => res.data);
     return setPedidos(apiData);
+  };
+
+  async function getTransportadoras() {
+    const apiData = await axios.get('http://localhost:3001/transportadoras').then((res) => res.data);
+    return setTransportadoras(apiData);
   };
 
   async function deleteItem(id) {
@@ -86,6 +92,7 @@ function Pedidos() {
 
   useEffect(() => {
     getPedidos();
+    getTransportadoras();
   }, []);
 
   return(
@@ -132,15 +139,23 @@ function Pedidos() {
             onChange={ (event) => setStateValorTotal(event.target.value) }
           />
         </label>
-
+        
         <label htmlFor="idTransportadora">
-          idTransportadora: 
-          <input
-            type="number"
+          Transportadora:
+          <select
+            name="idTransportadora" 
             id="idTransportadora"
-            value={ stateIdTransportadora }
             onChange={ (event) => setStateIdTransportadora(event.target.value) }
-          />
+          >
+            {transportadoras.length > 0 && transportadoras.map((fornecedor, index) => (
+              <option
+                key={ index }
+                value={ fornecedor.id }
+              >
+                { fornecedor.nome }
+              </option>
+            ))}
+          </select>
         </label>
         { editModeIsOn 
           ? (

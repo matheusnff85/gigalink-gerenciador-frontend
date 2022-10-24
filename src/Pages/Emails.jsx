@@ -4,6 +4,7 @@ import styled from '../Css/main.module.css';
 
 function Emails() {
   const [emails, setEmails] = useState([]);
+  const [listFornecedores, setFornecedores] = useState([]);
   const [editModeIsOn, setEditMode] = useState(false);
   const [currentEditId, setCurrentEditId] = useState('');
   const [stateEmail, setStateEmail] = useState('');
@@ -14,6 +15,11 @@ function Emails() {
     const apiData = await axios.get('http://localhost:3001/emails').then((res) => res.data);
     return setEmails(apiData);
   };
+
+  async function getFornecedores() {
+    const apiData = await axios.get('http://localhost:3001/fornecedores').then((res) => res.data);
+    return setFornecedores(apiData);
+  }
 
   async function deleteItem(id) {
     const result = await axios.delete(`http://localhost:3001/emails/${id}`)
@@ -76,6 +82,7 @@ function Emails() {
 
   useEffect(() => {
     getEmails();
+    getFornecedores();
   }, []);
 
   return(
@@ -104,14 +111,23 @@ function Emails() {
         </label>
 
         <label htmlFor="idFornecedor">
-          Id do Fornecedor:
-          <input
-            type="text"
-            name="idFornecedor"
-            value={ stateIdFornecedor }
+          Fornecedor:
+          <select
+            name="idFornecedor" 
+            id="idFornecedor"
             onChange={ (event) => setStateIdFornecedor(event.target.value) }
-          />
+          >
+            {listFornecedores.length > 0 && listFornecedores.map((fornecedor, index) => (
+              <option
+                key={ index }
+                value={ fornecedor.id }
+              >
+                { fornecedor.nome }
+              </option>
+            ))}
+          </select>
         </label>
+
         { editModeIsOn 
           ? (
             <button
